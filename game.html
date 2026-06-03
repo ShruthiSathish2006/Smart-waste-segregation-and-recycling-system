@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Game</title>
+
+<style>
+.container {
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+}
+
+/* LEFT SIDE ITEMS */
+#items {
+    display:flex;
+    flex-wrap:wrap;
+    max-width:300px;
+    justify-content:center;
+}
+
+/* TILE */
+.tile {
+    width:100px;
+    height:100px;
+    margin:8px;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:14px;
+    font-weight:bold;
+    background:rgba(255,255,255,0.9);
+    cursor:grab;
+}
+
+/* EMOJI */
+.tile span {
+    font-size:30px;
+}
+
+/* DROP ZONES */
+.zone {
+    width:180px;
+    min-height:220px;
+    margin:10px;
+    padding:10px;
+    border-radius:20px;
+    background:white;
+    color:black;
+    border:3px dashed black;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.zone-title {
+    width:100%;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎮 Match the Waste</h2>
+<h3 id="roundText"></h3>
+
+<div class="container">
+
+<!-- LEFT ITEMS -->
+<div id="items"></div>
+
+<!-- RIGHT ZONES -->
+<div>
+<div class="zone" ondrop="drop(event,'wet')" ondragover="allowDrop(event)">
+<div class="zone-title">🍃 Wet</div>
+</div>
+
+<div class="zone" ondrop="drop(event,'dry')" ondragover="allowDrop(event)">
+<div class="zone-title">📦 Dry</div>
+</div>
+
+<div class="zone" ondrop="drop(event,'hazard')" ondragover="allowDrop(event)">
+<div class="zone-title">☣️ Hazard</div>
+</div>
+</div>
+
+</div>
+
+<p id="msg"></p>
+
+<script src="script.js"></script>
+<script>
+
+// ALL ITEMS POOL
+let allItems = [
+["🍌 Banana","wet"],["🍎 Apple","wet"],["🥬 Leaves","wet"],
+["🍊 Orange Peel","wet"],["🍉 Fruit Waste","wet"],
+
+["📄 Paper","dry"],["📰 Newspaper","dry"],["📦 Cardboard","dry"],
+["🧴 Plastic","dry"],["🥤 Bottle","dry"],["🥫 Can","dry"],
+
+["🔋 Battery","hazard"],["💊 Medicine","hazard"],["💡 Bulb","hazard"]
+];
+
+// GAME VARIABLES
+let round = 1;
+let itemsPerRound = 5;
+let currentItems = [];
+let correctCount = 0;
+
+// LOAD ROUND
+function loadRound(){
+items.innerHTML = "";
+msg.innerText = "";
+correctCount = 0;
+
+roundText.innerText = "Round: " + round;
+
+// RANDOM ITEMS
+currentItems = allItems.sort(()=>0.5 - Math.random()).slice(0, itemsPerRound);
+
+// CREATE TILES
+currentItems.forEach((it,i)=>{
+let d=document.createElement("div");
+d.className="tile";
+
+let parts = it[0].split(" ");
+let emoji = parts[0];
+let name = parts.slice(1).join(" ");
+
+d.innerHTML = `
+<span>${emoji}</span>
+<small>${name}</small>
+`;
+
+d.id="i"+i;
+d.setAttribute("data",it[1]);
+d.draggable=true;
+
+d.ondragstart = e => e.dataTransfer.setData("id", d.id);
+
+items.appendChild(d);
+});
+}
+
+// DRAG FUNCTIONS
+function allowDrop(e){ e.preventDefault(); }
+
+function drop(e,type){
+e.preventDefault();
+
+let el = document.getElementById(e.dataTransfer.getData("id"));
+if(!el) return;
+
+// CORRECT DROP
+if(el.getAttribute("data") === type){
+
+// ADD INTO ZONE (AUTO ARRANGED)
+e.currentTarget.appendChild(el);
+
+updateScore(10);
+correctCount++;
+
+msg.innerText = "✅ Correct!";
+
+// ROUND COMPLETE
+if(correctCount >= currentItems.length){
+msg.innerText = "🎉 Round Complete!";
+
+setTimeout(()=>{
+round++;
+
+// INCREASE DIFFICULTY
+if(itemsPerRound < 7) itemsPerRound++;
+
+loadRound();
+},1000);
+}
+
+}else{
+msg.innerText = "❌ Try again!";
+}
+}
+
+// START GAME
+loadRound();
+
+</script>
+
+</body>
+</html>

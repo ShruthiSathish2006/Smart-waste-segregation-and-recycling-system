@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Finder</title>
+</head>
+
+<body>
+
+<h2>🔍 Waste Finder</h2>
+
+<input id="input" placeholder="Enter item..." oninput="find()">
+
+<div class="card" id="res"></div>
+
+<script>
+let data = {
+"banana":"Wet 🍃","apple":"Wet 🍃","orange peel":"Wet 🍃",
+"paper":"Dry 📄","newspaper":"Dry 📄","book":"Dry 📄",
+"plastic":"Dry 🧴","bottle":"Dry 🧴","wrapper":"Dry 🧴",
+"glass":"Dry 🧊","jar":"Dry 🧊",
+"battery":"Hazard ☣️","medicine":"Hazard ☣️","paint":"Hazard ☣️",
+"metal":"Dry 🔩","can":"Dry 🔩",
+"leaves":"Wet 🍃","grass":"Wet 🍃",
+"diapers":"Hazard ☣️","bulb":"Hazard ☣️",
+"milk packet":"Dry 🧴","chips packet":"Dry 🧴",
+"pizza box":"Dry 📦","tissue":"Wet 🍃"
+};
+
+function find(){
+res.innerText = data[input.value.toLowerCase()] || "Try another!";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Learn</title>
+</head>
+
+<body>
+
+<h2>📘 Learn Waste & Recycling</h2>
+
+<div id="content"></div>
+
+<script>
+// LARGE FACT DATABASE (100+)
+let facts = [
+"Wet waste includes food scraps 🍃",
+"Dry waste includes plastic and paper 📄",
+"Hazardous waste includes batteries ☣️",
+"Composting turns waste into fertilizer 🌱",
+"Plastic takes years to decompose 🧴",
+"Glass is fully recyclable 🧊",
+"Paper recycling saves trees 🌳",
+"Metal can be reused 🔩",
+"E-waste needs special disposal 💻",
+"Recycling reduces pollution 🌍",
+
+"Banana peels are biodegradable 🍌",
+"Plastic harms animals 🐢",
+"Reduce, Reuse, Recycle ♻️",
+"Organic waste can be composted 🍂",
+"Landfills release harmful gases ☁️",
+"Sorting waste helps recycling 🧠",
+"Recycling saves energy ⚡",
+"Reuse bottles 🧴",
+"Turn off lights 💡",
+"Save water 💧",
+
+"Glass bottles can be reused 🍾",
+"Newspapers are dry waste 📰",
+"Fruit waste is wet waste 🍎",
+"Tea leaves can be composted 🍵",
+"Use cloth bags 🛍️",
+"Avoid burning plastic 🚫🔥",
+"Segregation reduces landfill waste 🏞️",
+"Plastic pollutes oceans 🌊",
+"Composting reduces garbage 🪱",
+"Aluminium cans are recyclable 🥫",
+
+"Use reusable containers 🍱",
+"Recycle cardboard 📦",
+"Keep environment clean 🧹",
+"Segregate waste daily 🗑️",
+"Plant trees 🌳",
+"Avoid single-use plastic 🚫",
+"Save electricity ⚡",
+"Reuse paper ✏️",
+"Dispose batteries safely 🔋",
+"Use eco-friendly products 🌿",
+
+// extend to 100+
+
+];
+
+// FUNCTION: PICK 5 UNIQUE FACTS
+function getRandomFacts(arr, count){
+let shuffled = [...arr].sort(()=>0.5 - Math.random());
+return shuffled.slice(0, count);
+}
+
+// DISPLAY
+let selectedFacts = getRandomFacts(facts, 5);
+
+selectedFacts.forEach(f=>{
+let div = document.createElement("div");
+div.className = "card";
+div.innerText = f;
+content.appendChild(div);
+});
+</script>
+
+</body>
+</html>

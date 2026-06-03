@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Quiz</title>
+</head>
+
+<body>
+
+<h2>🧠 Image Quiz</h2>
+<div id="quiz"></div>
+
+<script src="script.js"></script>
+<script>
+let qs=[
+{img:"🍌",a:"Wet",o:["Wet","Dry"]},
+{img:"📄",a:"Dry",o:["Wet","Dry"]},
+{img:"🔋",a:"Hazard",o:["Dry","Hazard"]},
+{img:"🧴",a:"Dry",o:["Dry","Wet"]},
+{img:"🍎",a:"Wet",o:["Wet","Dry"]}
+];
+
+qs.sort(()=>0.5-Math.random()).slice(0,5).forEach(q=>{
+let div=document.createElement("div");
+div.className="card";
+
+div.innerHTML=`<div style="font-size:60px">${q.img}</div>`;
+
+q.o.forEach(opt=>{
+let b=document.createElement("button");
+b.innerText=opt;
+b.onclick=()=>{
+if(opt===q.a){
+updateScore(5);
+b.style.background="green";
+}else{
+b.style.background="red";
+}
+};
+div.appendChild(b);
+});
+
+quiz.appendChild(div);
+});
+</script>
+
+</body>
+</html>

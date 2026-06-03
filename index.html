@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eco Fun Zone</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:20px;
+    height:70vh;
+}
+
+.quadrant {
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:white;
+}
+
+.quadrant:hover {
+    transform:scale(1.1);
+    box-shadow:0 0 20px white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+<span style="left:10%">♻️</span>
+<span style="left:40%">🌍</span>
+<span style="left:70%">💧</span>
+</div>
+
+<div class="header">🌈 Eco Fun Zone 🎮</div>
+
+<div style="font-size:60px;">🤖</div>
+<p id="tip"></p>
+
+<div class="grid">
+<a href="search.html" class="quadrant">🔍 Finder</a>
+<a href="game.html" class="quadrant">🎮 Game</a>
+<a href="quiz.html" class="quadrant">🧠 Quiz</a>
+<a href="education.html" class="quadrant">📘 Learn</a>
+</div>
+
+<script src="script.js"></script>
+<script>showTip("tip");</script>
+
+</body>
+</html>

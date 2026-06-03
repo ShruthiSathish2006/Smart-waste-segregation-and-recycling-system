@@ -1,0 +1,199 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    color: black;
+    text-align: center;
+    background: linear-gradient(270deg, #89f7fe, #66a6ff, #a18cd1);
+    background-size: 600% 600%;
+    animation: bgMove 12s ease infinite;
+    overflow-x: hidden;
+}
+
+/* Bigger fonts everywhere */
+body, p, div, span {
+    font-size: 20px;
+}
+
+h1 { font-size: 50px; }
+h2 { font-size: 42px; }
+h3 { font-size: 34px; }
+
+/* Smooth transitions */
+* {
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===== FLOATING EMOJIS ===== */
+.bg span {
+    position: absolute;
+    font-size: 3em;
+    opacity: 0.7;
+    animation: float 12s linear infinite;
+}
+
+/* ===== HEADER ===== */
+.header {
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px;
+    color: black;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+/* ===== CARD (GLASS EFFECT) ===== */
+.card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 25px;
+    margin: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Hover glow */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.8);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background: white;
+}
+
+button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px black;
+}
+
+/* ===== INPUT ===== */
+input {
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: none;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* ===== GRID (INDEX PAGE) ===== */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    height: 70vh;
+}
+
+/* ===== QUADRANTS ===== */
+.quadrant {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.quadrant span {
+    font-size: 70px;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+.quadrant:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px white;
+}
+
+/* ===== GAME TILES ===== */
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.85);
+    cursor: grab;
+}
+
+.tile:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px black;
+}
+
+/* Drop zones */
+.zone {
+    background: white;
+    color: black;
+    border: 3px dashed black;
+}
+
+/* ===== QUIZ EMOJI ===== */
+.quiz-img {
+    font-size: 90px;
+    margin-bottom: 10px;
+}
+
+/* ===== RESULT TEXT ===== */
+#msg, #res, #scoreText {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ===== MASCOT ===== */
+.mascot {
+    font-size: 80px;
+    animation: bounce 2s infinite;
+}
+
+/* ===== TIP TEXT ===== */
+.tip {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
